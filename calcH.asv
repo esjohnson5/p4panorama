@@ -35,6 +35,8 @@ H = zeros(3, 3);  % Homography matrix to be returned
 A = zeros(n*3,9);
 b = zeros(n*3,1);
 max = 0;
+index = 1:n;
+
 for j=1:100
     r = randsample(n,4);
     for i=1:4
@@ -46,6 +48,7 @@ for j=1:100
     x = (A\b)';
     H = [x(1:3); x(4:6); x(7:9)];
     count = 0;
+    
     for k=1:n
         pp = [p2(k,:),1];
         pp = pp(:);
@@ -53,7 +56,7 @@ for j=1:100
         qx = q(1);
         qy = q(2);
         q1 = [qx,qy];   
-        ed = sqrt((qx-p1(k,1).^2+(qy-p1(k,1)).^2));
+        ed = sqrt((qx-pp(1,1)^2+(qy-pp(2,1))^2));
         if (ed < 3)
             count = count+1;
             index(count) = k;
