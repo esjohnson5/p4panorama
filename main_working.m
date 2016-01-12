@@ -12,6 +12,7 @@
 %% 1. Take images
 %
 % Change the following to the folder containing your input images
+clear all;
 imagepath = 'test';   
 % Assumes images are in order and are the *only*
 % files in this directory.
@@ -84,13 +85,6 @@ end
 % Compute new homographies H_map that map every other image *directly* to
 % the reference image 
 
-%pulling original homography matrix
-%H_21 = cell2mat(H_list(1));
-%H_32 = cell2mat(H_list(2));
-%H_43 = cell2mat(H_list(3));
-%creating homography matrix with 1st image perspective
-%H_31 = H_21*H_32;
-%H_41 = H_31*H_43;
 
 H_map = {};
 H_map(1) = {eye(3)}; 
@@ -102,12 +96,19 @@ for i=2:(length(imagelist)-1)
    H_xz = H_yz*H_xy;
    H_map(i+1) = {H_xz};
 end
+
+%pulling original homography matrix
+%H_21 = cell2mat(H_list(1));
+%H_32 = cell2mat(H_list(2));
+%H_43 = cell2mat(H_list(3));
+%creating homography matrix with 1st image perspective
+%H_31 = H_21*H_32;
+%H_41 = H_31*H_43;
 %putting new homogrphy into H_map
 %H_map(1) = {eye(3)};
 %H_map(2) = {H_21};
 %H_map(3) = {H_31};
 %H_map(4) = {H_41};
-
 
 %------------- YOUR CODE ENDS HERE -----------------
 
@@ -222,8 +223,8 @@ panorama_image = panorama_image + p;
 %for i = 1 : length(warped_images)
 %   panorama_image = panorama_image + warped_images{i};
 %end
-
 imshow(panorama_image);
+%imwrite(panorama_image,'johnson.jpg');
 % Save your final output image as a .jpg file and name it according to
 % the directions in the assignment.  
 %

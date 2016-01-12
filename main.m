@@ -13,7 +13,7 @@
 %
 % Change the following to the folder containing your input images
 clear all;
-imagepath = 'input_images';   
+imagepath = 'test';   
 % Assumes images are in order and are the *only*
 % files in this directory.
 % 
@@ -224,7 +224,7 @@ panorama_image = panorama_image + p;
 %   panorama_image = panorama_image + warped_images{i};
 %end
 %imshow(panorama_image);
-imwrite(panorama_image,'johnson.jpg');
+imwrite(panorama_image,'test.jpg');
 % Save your final output image as a .jpg file and name it according to
 % the directions in the assignment.  
 %
